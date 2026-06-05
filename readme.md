@@ -102,23 +102,26 @@ Glucose: OC[C@H]1OC(O)C@HC@@H[C@@H]1O
 drug-admet-predictor/
 │
 ├── backend/
-│ ├── main.py
-│ ├── utils/
-│ │ ├── chemistry.py
-│ │ ├── llm.py
-│ ├── generated_images/
+│   ├── main.py
+│   ├── utils/
+│   │   ├── chemistry.py
+│   │   ├── llm.py
+│   ├── generated_images/
 │
 ├── frontend/
-│ ├── src/
-│ │ ├── App.jsx
-│ │ ├── App.css
-│ │ ├── components/
-│ ├── components/
-│ │ ├── ExampleButtons.jsx
-│ │ ├── MoleculeCard.jsx
-│ │ ├── PropertyTable.jsx
-│ │ ├── SmilesInput.jsx
-│ ├── package.json
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── services/
+│   │   │   ├── api.js
+│   │   ├── components/
+│   │   │   ├── ExampleButtons.jsx
+│   │   │   ├── MoleculeCard.jsx
+│   │   │   ├── PropertyTable.jsx
+│   │   │   ├── SmilesInput.jsx
+│   │
+│   ├── package.json
+│   ├── vite.config.js
 │
 └── README.md
 
@@ -143,30 +146,44 @@ drug-admet-predictor/
   "interpretation": "The molecule shows good drug-likeness with moderate lipophilicity..."
 }
 
+---
+
 ## 📊 Evaluation Mapping
-| Dimension     | Implementation                                 |
-| ------------- | ---------------------------------------------- |
-| Correctness   | RDKit calculations + API working               |
-| Code Quality  | Modular backend + reusable frontend components |
-| UI/UX         | Clean card-based interface with visual clarity |
-| Bonus         | LLM-based interpretation + molecule rendering  |
-| Communication | This README + structured API response          |
 
-💡 What I Would Improve With More Time
-Add real-time 3D molecular visualization (WebGL / 3Dmol.js)
-Improve LLM prompting for deeper ADMET reasoning
-Add database to store predictions history
-Deploy backend with GPU optimization for faster inference
-Add login system for saved molecules
-Add batch SMILES upload (CSV support)
+| Dimension      | Implementation |
+|----------------|----------------|
+| Correctness    | RDKit calculations + API working |
+| Code Quality   | Modular backend + reusable frontend components |
+| UI/UX          | Clean card-based interface with visual clarity |
+| Bonus          | LLM-based interpretation + molecule rendering |
+| Communication  | Structured README + clean API design |
 
-⚠️ Note
-This project uses free-tier LLM API (Gemini), which may have rate limits.
-RDKit computations are fully local and deterministic.
-👨‍💻 Author
+---
 
-Built as a full-stack AI/cheminformatics project combining:
+## 💡 What I Would Improve With More Time
 
-Machine Learning concepts
-Drug discovery fundamentals
-Full-stack web development
+- Add real-time 3D molecular visualization (WebGL / 3Dmol.js)
+- Improve LLM prompting for deeper ADMET reasoning
+- Add database to store prediction history
+- Deploy backend with GPU optimization for faster inference
+- Add login system for saved molecules
+- Add batch SMILES upload (CSV support)
+
+---
+
+## ⚠️ Note
+
+- This project uses a free-tier LLM API (Gemini), so rate limits may apply
+- RDKit computations are fully local and deterministic
+
+---
+
+## 👨‍💻 Author
+
+Built as a full-stack AI + cheminformatics project combining:
+
+- Machine Learning concepts
+- Drug discovery fundamentals
+- Full-stack web development
+
+---
