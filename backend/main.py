@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -44,16 +44,17 @@ def home():
 
 
 @app.post("/predict")
-def predict(request: SmilesRequest):
+def predict(request_data: SmilesRequest, request: Request):
     try:
+
         # Calculate molecular properties
         properties = calculate_properties(
-            request.smiles
+            request_data.smiles
         )
 
         # Generate molecule image
         image_filename = generate_molecule_image(
-            request.smiles
+            request_data.smiles
         )
 
         # Generate Gemini interpretation
@@ -61,11 +62,16 @@ def predict(request: SmilesRequest):
             properties
         )
 
+        image_url = (
+            str(request.base_url)
+            + f"images/{image_filename}"
+        )
+
         return {
             "success": True,
-            "smiles": request.smiles,
+            "smiles": request_data.smiles,
             "properties": properties,
-            "image_url": f"http://127.0.0.1:8000/images/{image_filename}",
+            "image_url": image_url,
             "interpretation": interpretation
         }
 
