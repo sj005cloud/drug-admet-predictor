@@ -17,9 +17,18 @@ app = FastAPI(
     version="1.0.0"
 )
 
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+IMAGE_DIR = BASE_DIR / "generated_images"
+
+# ensure folder exists in production
+os.makedirs(IMAGE_DIR, exist_ok=True)
+
 app.mount(
     "/images",
-    StaticFiles(directory="generated_images"),
+    StaticFiles(directory=str(IMAGE_DIR)),
     name="images"
 )
 
