@@ -1,0 +1,108 @@
+import { useState } from "react";
+
+import "./App.css";
+
+import SmilesInput from "./components/SmilesInput";
+import ExampleButtons from "./components/ExampleButtons";
+import PropertyTable from "./components/PropertyTable";
+import MoleculeCard from "./components/MoleculeCard";
+
+import { predictMolecule } from "./services/api";
+
+function App() {
+  const [smiles, setSmiles] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [properties, setProperties] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
+  const [interpretation, setInterpretation] = useState("");
+
+  const handlePredict = async () => {
+    if (!smiles.trim()) {
+      alert("Please enter a SMILES string");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const result = await predictMolecule(smiles);
+
+      setProperties(result.properties);
+      setImageUrl(result.image_url);
+
+      setInterpretation(
+        result.interpretation || ""
+      );
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        error?.response?.data?.detail ||
+        "Prediction failed"
+      );
+
+    } finally {
+
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      {/* Video Wallpaper */}
+
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="video-bg"
+      >
+        <source
+          src="/molecule-bg4.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <div className="container">
+
+        <div className="header">
+
+          <div className="tag">
+            AI DRUG DISCOVERY PLATFORM
+          </div>
+
+          <h1>
+            Drug ADMET Predictor
+          </h1>
+
+          <p>
+            Computational Screening for Drug Candidates
+          </p>
+
+        </div>
+
+        <ExampleButtons onSelect={setSmiles} />
+
+        <SmilesInput
+          smiles={smiles}
+          setSmiles={setSmiles}
+          onPredict={handlePredict}
+          loading={loading}
+        />
+
+        <PropertyTable properties={properties} />
+
+        <MoleculeCard
+          imageUrl={imageUrl}
+          interpretation={interpretation}
+        />
+
+      </div>
+    </>
+  );
+}
+
+export default App;
