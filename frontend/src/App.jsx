@@ -83,7 +83,7 @@ setInterpretation(result.interpretation || "");
 
           <div className="title-row">
   <img
-    src="/logo.png"
+    src="/logo1.PNG"
     alt="Logo"
     className="site-logo"
   />
