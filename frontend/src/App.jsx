@@ -25,10 +25,16 @@ function App() {
     try {
       setLoading(true);
 
-      const result = await predictMolecule(smiles);
+     const result = await predictMolecule(smiles);
 
-      setProperties(result.properties);
-      setImageUrl(result.image_url);
+if (!result || !result.properties) {
+  alert("Invalid response from server");
+  return;
+}
+
+setProperties(result.properties || null);
+setImageUrl(result.image_url || "");
+setInterpretation(result.interpretation || "");
 
       setInterpretation(
         result.interpretation || ""
