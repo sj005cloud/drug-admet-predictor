@@ -369,4 +369,26 @@ flex-direction:column;
 .container{
 padding:25px 16px;
 }
+
+}
+.active-example{
+
+background:linear-gradient(
+90deg,
+#0ea5e9,
+#7c3aed
+) !important;
+
+border:1px solid
+rgba(255,255,255,.25);
+
+box-shadow:
+0 0 20px rgba(
+59,
+130,
+246,
+.45
+);
+
+transform:translateY(-2px);
 }

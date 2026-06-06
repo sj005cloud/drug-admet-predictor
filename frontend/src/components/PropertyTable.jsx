@@ -1,39 +1,82 @@
-function PropertyTable({ properties }) {
+function PropertyTable({
+  properties,
+  moleculeName,
+}) {
+
   if (!properties) return null;
 
   return (
     <div className="card">
-      <h2>🔬 Molecule Analysis</h2>
+
+      <h2>
+        🔬 Molecule Analysis
+      </h2>
 
       <table>
         <tbody>
+
           <tr>
-            <td>Molecular Weight</td>
-            <td>{properties.molecular_weight}</td>
+            <td>
+              Molecule Name
+            </td>
+
+            <td>
+              {moleculeName}
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Molecular Weight
+            </td>
+
+            <td>
+              {properties.molecular_weight}
+            </td>
           </tr>
 
           <tr>
             <td>LogP</td>
-            <td>{properties.logp}</td>
+
+            <td>
+              {properties.logp}
+            </td>
           </tr>
 
           <tr>
-            <td>H-Bond Donors</td>
-            <td>{properties.h_bond_donors}</td>
+            <td>
+              H-Bond Donors
+            </td>
+
+            <td>
+              {properties.h_bond_donors}
+            </td>
           </tr>
 
           <tr>
-            <td>H-Bond Acceptors</td>
-            <td>{properties.h_bond_acceptors}</td>
+            <td>
+              H-Bond Acceptors
+            </td>
+
+            <td>
+              {properties.h_bond_acceptors}
+            </td>
           </tr>
 
           <tr>
             <td>TPSA</td>
-            <td>{properties.tpsa}</td>
+
+            <td>
+              {properties.tpsa}
+            </td>
           </tr>
 
           <tr>
-            <td>Lipinski Rule</td>
+
+            <td>
+              Lipinski Rule
+            </td>
+
             <td>
               <span
                 className={
@@ -47,9 +90,12 @@ function PropertyTable({ properties }) {
                   : "FAIL"}
               </span>
             </td>
+
           </tr>
+
         </tbody>
       </table>
+
     </div>
   );
 }

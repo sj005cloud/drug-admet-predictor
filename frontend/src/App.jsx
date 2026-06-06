@@ -9,13 +9,16 @@ import MoleculeCard from "./components/MoleculeCard";
 
 import { predictMolecule } from "./services/api";
 
-
 function App() {
   const [smiles, setSmiles] = useState("");
+  const [selectedMolecule, setSelectedMolecule] =
+    useState("Custom Molecule");
+
   const [loading, setLoading] = useState(false);
   const [properties, setProperties] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
-  const [interpretation, setInterpretation] = useState("");
+  const [interpretation, setInterpretation] =
+    useState("");
 
   const handlePredict = async () => {
     if (!smiles.trim()) {
@@ -26,16 +29,21 @@ function App() {
     try {
       setLoading(true);
 
-     const result = await predictMolecule(smiles);
+      const result =
+        await predictMolecule(smiles);
 
-if (!result || !result.properties) {
-  alert("Invalid response from server");
-  return;
-}
+      if (!result || !result.properties) {
+        alert("Invalid response from server");
+        return;
+      }
 
-setProperties(result.properties || null);
-setImageUrl(result.image_url || "");
-setInterpretation(result.interpretation || "");
+      setProperties(
+        result.properties || null
+      );
+
+      setImageUrl(
+        result.image_url || ""
+      );
 
       setInterpretation(
         result.interpretation || ""
@@ -58,8 +66,6 @@ setInterpretation(result.interpretation || "");
 
   return (
     <>
-      {/* Video Wallpaper */}
-
       <video
         autoPlay
         loop
@@ -82,14 +88,16 @@ setInterpretation(result.interpretation || "");
           </div>
 
           <div className="title-row">
-  <img
-    src="/logo3.PNG"
-    alt="Logo"
-    className="site-logo"
-  />
+            <img
+              src="/logo3.PNG"
+              alt="Logo"
+              className="site-logo"
+            />
 
-  <h1>Drug ADMET Predictor</h1>
-</div>
+            <h1>
+              Drug ADMET Predictor
+            </h1>
+          </div>
 
           <p>
             Computational Screening for Drug Candidates
@@ -97,20 +105,40 @@ setInterpretation(result.interpretation || "");
 
         </div>
 
-        <ExampleButtons onSelect={setSmiles} />
+        <ExampleButtons
+          onSelect={(smiles, name) => {
+            setSmiles(smiles);
+            setSelectedMolecule(name);
+          }}
+          selectedMolecule={
+            selectedMolecule
+          }
+        />
 
         <SmilesInput
           smiles={smiles}
-          setSmiles={setSmiles}
+          setSmiles={(value) => {
+            setSmiles(value);
+            setSelectedMolecule(
+              "Custom Molecule"
+            );
+          }}
           onPredict={handlePredict}
           loading={loading}
         />
 
-        <PropertyTable properties={properties} />
+        <PropertyTable
+          properties={properties}
+          moleculeName={
+            selectedMolecule
+          }
+        />
 
         <MoleculeCard
           imageUrl={imageUrl}
-          interpretation={interpretation}
+          interpretation={
+            interpretation
+          }
         />
 
       </div>
