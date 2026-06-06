@@ -9,6 +9,7 @@ import MoleculeCard from "./components/MoleculeCard";
 
 import { predictMolecule } from "./services/api";
 
+
 function App() {
   const [smiles, setSmiles] = useState("");
   const [loading, setLoading] = useState(false);
@@ -80,9 +81,15 @@ setInterpretation(result.interpretation || "");
             AI DRUG DISCOVERY PLATFORM
           </div>
 
-          <h1>
-            Drug ADMET Predictor
-          </h1>
+          <div className="title-row">
+  <img
+    src="/logo.png"
+    alt="Logo"
+    className="site-logo"
+  />
+
+  <h1>Drug ADMET Predictor</h1>
+</div>
 
           <p>
             Computational Screening for Drug Candidates
