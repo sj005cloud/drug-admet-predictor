@@ -13,6 +13,8 @@ function App() {
   const [smiles, setSmiles] = useState("");
   const [selectedMolecule, setSelectedMolecule] =
     useState("Custom Molecule");
+    const [predictedMolecule, setPredictedMolecule] =
+  useState("Custom Molecule");
 
   const [loading, setLoading] = useState(false);
   const [properties, setProperties] = useState(null);
@@ -48,6 +50,9 @@ function App() {
       setInterpretation(
         result.interpretation || ""
       );
+      setPredictedMolecule(
+  selectedMolecule
+);
 
     } catch (error) {
 
@@ -130,7 +135,7 @@ function App() {
         <PropertyTable
           properties={properties}
           moleculeName={
-            selectedMolecule
+            predictedMolecule
           }
         />
 
