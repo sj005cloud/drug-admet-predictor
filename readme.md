@@ -167,17 +167,6 @@ drug-admet-predictor/
 
 ---
 
-## 📊 Evaluation Mapping
-
-| Dimension     | Implementation                                      |
-| ------------- | --------------------------------------------------- |
-| Correctness   | RDKit calculations + working API                    |
-| Code Quality  | Modular FastAPI backend + reusable React components |
-| UI/UX         | Responsive card-based interface                     |
-| Bonus         | Gemini interpretation + molecule visualization      |
-| Communication | Structured documentation and API design             |
-
----
 
 ## 🚀 Local Setup
 
